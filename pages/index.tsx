@@ -9,7 +9,7 @@ export default function Home() {
         <title>Secret Santa</title>
       </Head>
       <Snowfall />
-      <div className="absolute bottom-0 bg-[url('/img/snow.png')] bg-repeat-x bg-center bg-cover h-[300px] w-full transform" />
+      <div className="absolute bottom-0 bg-[url('/snow.png')] bg-repeat-x bg-center bg-cover h-[300px] w-full transform" />
       <div className="mt-10 sm:mt-14 md:mt-20 lg:mt-0 lg:flex gap-24 items-start justify-center lg:absolute top-1/2 left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 font-mono text-white">
         <div className="w-min space-y-6">
           <p className="font-bold text-5xl sm:text-7xl md:text-8xl uppercase">
@@ -18,8 +18,8 @@ export default function Home() {
             is Coming
           </p>
           <p className="font-mono font-normal text-lg sm:text-xl md:text-2xl md:text-justify">
-            It&apos;s time for a secret santa gift exchange! This site will handle
-            the details, so you can focus on finding the perfect gift.
+            It&apos;s time for a secret santa gift exchange! This site will
+            handle the details, so you can focus on finding the perfect gift.
           </p>
           <Button className="w-full md:w-auto">Add Names</Button>
         </div>
