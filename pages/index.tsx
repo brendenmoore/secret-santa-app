@@ -7,19 +7,20 @@ export default function Home() {
       <Snowfall/>
       <div className="absolute bottom-0 bg-[url('/img/snow.png')] bg-repeat-x bg-center bg-cover h-[300px] w-full transform" />
       <div className=" flex gap-24 items-start justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-mono text-white">
-        <div className="w-min">
+        <div className="w-min space-y-6">
           <p className="font-bold text-8xl uppercase">
             Christmas
             <br />
             is Coming
           </p>
-          <p className="font-mono font-normal text-2xl mt-4">
+          <p className="font-mono font-normal text-2xl text-justify">
             It's time for a secret santa gift exchange! This site will handle
             the details, so you can focus on finding the perfect gift.
           </p>
-          <Button className="mt-6">Add Names</Button>
+          <Button>Add Names</Button>
         </div>
-        <div className="w-[350px]">
+        <div className="w-[350px] relative">
+          <span className="absolute bottom-[-18px] rounded-[50%] opacity-50 left-0 right-0 h-16 blur-xl bg-black"></span>
           <img
             className="max-w-full h-auto"
             src="./santa (2).png"
