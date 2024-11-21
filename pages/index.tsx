@@ -18,7 +18,7 @@ export default function Home() {
             is Coming
           </p>
           <p className="font-mono font-normal text-lg sm:text-xl md:text-2xl md:text-justify">
-            It's time for a secret santa gift exchange! This site will handle
+            It&apos;s time for a secret santa gift exchange! This site will handle
             the details, so you can focus on finding the perfect gift.
           </p>
           <Button className="w-full md:w-auto">Add Names</Button>
