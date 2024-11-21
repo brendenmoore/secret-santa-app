@@ -2,6 +2,10 @@ import Button from "@/components/button";
 import Head from "next/head";
 import Snowfall from "react-snowfall";
 
+const env = process.env.NODE_ENV;
+const snowPath =
+  env === "production" ? "/secret-santa-app/snow.png" : "/snow.png";
+
 export default function Home() {
   return (
     <div className="relative flex lg:block justify-center background min-h-screen">
@@ -9,7 +13,10 @@ export default function Home() {
         <title>Secret Santa</title>
       </Head>
       <Snowfall />
-      <div className="absolute bottom-0 bg-[url('/snow.png')] bg-repeat-x bg-center bg-cover h-[300px] w-full transform" />
+      <div
+        style={{ backgroundImage: `url(${snowPath})` }}
+        className={`absolute bottom-0 bg-repeat-x bg-center bg-cover h-[300px] w-full transform`}
+      />
       <div className="mt-10 sm:mt-14 md:mt-20 lg:mt-0 lg:flex gap-24 items-start justify-center lg:absolute top-1/2 left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 font-mono text-white">
         <div className="w-min space-y-6">
           <p className="font-bold text-5xl sm:text-7xl md:text-8xl uppercase">
