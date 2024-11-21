@@ -8,6 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "mono": ["var(--font-spline-sans-mono)"],
+        "sans": ["var(--font-spline-sans)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
