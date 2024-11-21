@@ -1,10 +1,14 @@
 import Button from "@/components/button";
+import Head from "next/head";
 import Snowfall from "react-snowfall";
 
 export default function Home() {
   return (
     <div className="background h-screen">
-      <Snowfall/>
+      <Head>
+        <title>Secret Santa</title>
+      </Head>
+      <Snowfall />
       <div className="absolute bottom-0 bg-[url('/img/snow.png')] bg-repeat-x bg-center bg-cover h-[300px] w-full transform" />
       <div className=" flex gap-24 items-start justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-mono text-white">
         <div className="w-min space-y-6">
