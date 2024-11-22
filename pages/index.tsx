@@ -8,29 +8,35 @@ const snowPath =
 
 export default function Home() {
   return (
-    <div className="relative flex lg:block justify-center background min-h-screen">
+    <div className="h-full flex flex-col justify-center bg-green-900">
+    <div className="relative flex lg:block justify-center background min-h-screen lg:min-h-[780px] lg:h-screen lg:max-h-[1098px]">
       <Head>
         <title>Secret Santa</title>
       </Head>
-      <Snowfall />
+      <Snowfall
+        speed={[0.5, 1]}
+        wind={[-0.5, 1]}
+        radius={[1, 4]}
+        snowflakeCount={75}
+      />
       <div
         style={{ backgroundImage: `url(${snowPath})` }}
         className={`absolute bottom-0 bg-repeat-x bg-center bg-cover h-[300px] w-full transform`}
       />
       <div className="mt-10 sm:mt-14 md:mt-20 lg:mt-0 lg:flex gap-24 items-start justify-center lg:absolute top-1/2 left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 font-mono text-white">
         <div className="w-min space-y-6">
-          <p className="font-bold text-5xl sm:text-7xl md:text-8xl uppercase">
+          <p className="font-bold text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-8xl 2xl:text-9xl uppercase">
             Christmas
             <br />
             is Coming
           </p>
-          <p className="font-mono font-normal text-lg sm:text-xl md:text-2xl md:text-justify">
+          <p className="font-mono font-normal text-lg sm:text-xl md:text-2xl 2xl:text-3xl md:text-justify">
             It&apos;s time for a secret santa gift exchange! This site will
             handle the details, so you can focus on finding the perfect gift.
           </p>
           <Button className="w-full md:w-auto">Add Names</Button>
         </div>
-        <div className="w-[200px] sm:w-[250px] md:w-[300px] lg:w-[350px] relative place-self-center mt-16 mb-14 lg:mb-0 md:mt-0 md:place-self-end">
+        <div className="w-[200px] sm:w-[250px] md:w-[300px] lg:w-[350px] xl:w-[400px] 2xl:w-[450px] relative place-self-center mt-16 mb-14 lg:mb-0 md:mt-0 md:place-self-end">
           <span className="absolute bottom-[-18px] rounded-[50%] opacity-50 left-0 right-0 h-16 blur-xl bg-black"></span>
           <img
             className="max-w-full h-auto"
@@ -57,6 +63,7 @@ export default function Home() {
       </filter>
       <rect width="100%" height="100%" filter="url(#noise-filter)"></rect>
     </svg> */}
+    </div>
     </div>
   );
 }

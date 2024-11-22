@@ -8,9 +8,12 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "450px",
+      },
       fontFamily: {
-        "mono": ["var(--font-spline-sans-mono)"],
-        "sans": ["var(--font-spline-sans)"],
+        mono: ["var(--font-spline-sans-mono)"],
+        sans: ["var(--font-spline-sans)"],
       },
       colors: {
         background: "var(--background)",
