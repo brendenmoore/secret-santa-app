@@ -21,8 +21,8 @@ export default function Start() {
             Participants
           </p>
           <p className="font-mono font-normal text-lg sm:text-xl md:text-justify">
-            Add the names and emails for each member of your group. Don't forget
-            to add yourself! When you're done, click "Draw Names" to randonly
+            Add the names and emails for each member of your group. Don&apos;t forget
+            to add yourself! When you&apos;re done, click &quot;Draw Names&quot; to randonly
             assign a secret santa to each person.
           </p>
           <div className="drop-shadow-lg">
@@ -55,7 +55,7 @@ export default function Start() {
                     name="participantName"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder="Enter participant's name"
+                    placeholder="Enter participant&apos;s name"
                   />
                 </div>
 
@@ -69,7 +69,7 @@ export default function Start() {
                     name="email"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder="Enter participant's email"
+                    placeholder="Enter participant&apos;s email"
                   />
                 </div>
 
