@@ -1,10 +1,16 @@
 import Button from "@/components/button";
 import Head from "next/head";
 import SmallButton from "@/components/SmallButton";
+import { useParticipants } from "@/utils/useParticipants";
+import Dialog from "@/components/Dialog";
+import { useState } from "react";
 
-export default function Home() {
+export default function Start() {
+  const { participants, addParticipant, removeParticipant } = useParticipants();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  console.log(participants);
   return (
-    <div className="background min-h-screen">
+    <div className=" min-h-screen">
       <Head>
         <title>Secret Santa - Draw Names</title>
       </Head>
@@ -27,24 +33,36 @@ export default function Home() {
                   "polygon(0 50px, 50px 0, calc(100% - 50px) 0, 100% 50px, 100% 100%, 0 100%)",
               }}
             >
-              <form className="p-8 pt-12 w-full space-y-6 text-gray-700" onSubmit={(e) => {
-                e.preventDefault();
-                // Handle form submission
-              }}>
+              <form
+                className="p-8 pt-12 w-full space-y-6 text-gray-700"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  addParticipant({
+                    name: (e.currentTarget.participantName as HTMLInputElement)
+                      .value,
+                    email: (e.currentTarget.email as HTMLInputElement).value,
+                  });
+                  e.currentTarget.reset();
+                }}
+              >
                 <div className="space-y-2">
-                  <label htmlFor="name" className="block font-mono ">Name</label>
+                  <label htmlFor="participantName" className="block font-mono ">
+                    Name
+                  </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="participantName"
+                    name="participantName"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     placeholder="Enter participant's name"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block font-mono ">Email</label>
+                  <label htmlFor="email" className="block font-mono ">
+                    Email
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -62,9 +80,46 @@ export default function Home() {
             </div>
           </div>
 
-          <Button className="w-full md:w-auto">Draw Names</Button>
+          <Button className="w-full md:w-auto" onClick={() => setIsDialogOpen(true)}>
+            Draw Names
+          </Button>
+          <div>
+            {participants.length > 0 && (
+              <div className="mt-10 space-y-4">
+                <div className="space-y-2">
+                  {participants.map((participant) => (
+                    <div
+                      key={participant.id}
+                      className="flex justify-between items-center"
+                    >
+                      <span>{participant.name}</span>
+                      <SmallButton
+                        onClick={() => removeParticipant(participant.id)}
+                      >
+                        Remove
+                      </SmallButton>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
+
+      <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-gray-900">Draw Names</h2>
+          <p className="text-gray-600">
+            Ready to assign Secret Santas? This will randomly pair each participant
+            with someone to give a gift to.
+          </p>
+          <div className="flex justify-end space-x-3">
+            <SmallButton onClick={() => setIsDialogOpen(false)}>Cancel</SmallButton>
+            <SmallButton>Draw Names</SmallButton>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }
