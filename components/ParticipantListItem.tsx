@@ -15,7 +15,7 @@ export function ParticipantListItem({
   removeParticipant,
 }: ParticipantListItemProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const imageNumber = (participant.id % 14) + 1;
+  const imageNumber = (participant.id % 15) + 1;
 
   return (
     <div className="flex max-w-md mx-auto items-center gap-4 bg-white/10 backdrop-blur-sm rounded-lg p-3">
