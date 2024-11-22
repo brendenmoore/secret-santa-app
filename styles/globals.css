@@ -8,7 +8,7 @@
 }
 
 .background {
-  background: linear-gradient(135deg, #7E9D4C, #467638, #245E30, #123B19);
+  background: linear-gradient(135deg, #7E9D4C, #467638, #245E30, #123B19) fixed;
 }
 
 .background:before {
