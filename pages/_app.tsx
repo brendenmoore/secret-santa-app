@@ -13,7 +13,7 @@ const splineSansMono = Spline_Sans_Mono({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${splineSansMono.variable} sans-serif h-full`}>
+    <main className={`${splineSansMono.variable} sans-serif`}>
       <Component {...pageProps} />
     </main>
   );

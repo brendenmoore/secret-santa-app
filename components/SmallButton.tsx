@@ -21,7 +21,7 @@ const SmallButton: React.FC<SmallButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       className={twMerge(
-        "py-2 px-6 text-white uppercase font-bold text-lg rounded-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 transition-colors duration-200",
+        "py-2 px-6 text-white uppercase font-bold text-lg rounded-lg bg-green-600 hover:bg-green-500 transition-colors duration-200",
         disabled && "opacity-50 cursor-not-allowed",
         className
       )}

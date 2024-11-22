@@ -5,6 +5,7 @@ import { useParticipants } from "@/utils/useParticipants";
 import Dialog from "@/components/Dialog";
 import { useState } from "react";
 import { useSendNames } from "@/utils/useSendNames";
+import { ParticipantListItem } from "@/components/ParticipantListItem";
 
 export default function Start() {
   const { participants, addParticipant, removeParticipant } = useParticipants();
@@ -12,24 +13,24 @@ export default function Start() {
   const { sendNames, isSending, progress, error, isSuccess } = useSendNames();
   console.log(participants);
   return (
-    <div className=" min-h-screen">
+    <div className=" min-h-screen background">
       <Head>
         <title>Secret Santa - Draw Names</title>
       </Head>
 
-      <div className="p-10 font-mono text-white">
+      <div className="relative p-10 font-mono text-white">
         <div className="space-y-6">
           <p className="font-bold text-4xl xs:text-5xl sm:text-6xl uppercase">
             Participants
           </p>
-          <p className="font-mono font-normal text-lg sm:text-xl md:text-justify">
+          <p className="font-mono font-normal sm:text-lg md:text-justify">
             Add the names and emails for each member of your group. Don&apos;t
             forget to add yourself! When you&apos;re done, click &quot;Draw
             Names&quot; to randomly assign a secret santa to each person.
           </p>
           <div className="drop-shadow-lg">
             <div
-              className="bg-white relative min-h-[400px] w-full max-w-md rounded-b-3xl before:absolute before:w-6 before:h-6 before:rounded-full before:bg-green-600/60 before:top-4 before:left-1/2 before:-translate-x-1/2 before:shadow-inner before:shadow-green-700/60 flex items-center"
+              className="bg-white mx-auto relative min-h-[400px]w-full max-w-xs rounded-b-3xl before:absolute before:w-6 before:h-6 before:rounded-full before:bg-green-600/60 before:top-4 before:left-1/2 before:-translate-x-1/2 before:shadow-inner before:shadow-green-700/60 flex items-center"
               style={{
                 clipPath:
                   "polygon(0 50px, 50px 0, calc(100% - 50px) 0, 100% 50px, 100% 100%, 0 100%)",
@@ -57,7 +58,7 @@ export default function Start() {
                     name="participantName"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder="Enter participant&apos;s name"
+                    placeholder="Enter participant's name"
                   />
                 </div>
 
@@ -71,7 +72,7 @@ export default function Start() {
                     name="email"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder="Enter participant&apos;s email"
+                    placeholder="Enter participant's email"
                   />
                 </div>
 
@@ -82,28 +83,25 @@ export default function Start() {
             </div>
           </div>
 
-          <Button
-            className="w-full md:w-auto"
-            onClick={() => setIsDialogOpen(true)}
-          >
-            Draw Names
-          </Button>
+          {participants.length >= 3 && (
+            <Button
+              className="w-full max-w-xs mx-auto block md:w-auto"
+              onClick={() => setIsDialogOpen(true)}
+            >
+              Draw Names
+            </Button>
+          )}
+
           <div>
             {participants.length > 0 && (
               <div className="mt-10 space-y-4">
                 <div className="space-y-2">
                   {participants.map((participant) => (
-                    <div
+                    <ParticipantListItem
+                      participant={participant}
+                      removeParticipant={removeParticipant}
                       key={participant.id}
-                      className="flex justify-between items-center"
-                    >
-                      <span>{participant.name}</span>
-                      <SmallButton
-                        onClick={() => removeParticipant(participant.id)}
-                      >
-                        Remove
-                      </SmallButton>
-                    </div>
+                    />
                   ))}
                 </div>
               </div>
