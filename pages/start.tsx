@@ -1,13 +1,15 @@
-import Button from "@/components/button";
+import Button from "@/components/Button";
 import Head from "next/head";
 import SmallButton from "@/components/SmallButton";
 import { useParticipants } from "@/utils/useParticipants";
 import Dialog from "@/components/Dialog";
 import { useState } from "react";
+import { useSendNames } from "@/utils/useSendNames";
 
 export default function Start() {
   const { participants, addParticipant, removeParticipant } = useParticipants();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { sendNames, isSending, progress, error, isSuccess } = useSendNames();
   console.log(participants);
   return (
     <div className=" min-h-screen">
@@ -21,9 +23,9 @@ export default function Start() {
             Participants
           </p>
           <p className="font-mono font-normal text-lg sm:text-xl md:text-justify">
-            Add the names and emails for each member of your group. Don&apos;t forget
-            to add yourself! When you&apos;re done, click &quot;Draw Names&quot; to randonly
-            assign a secret santa to each person.
+            Add the names and emails for each member of your group. Don&apos;t
+            forget to add yourself! When you&apos;re done, click &quot;Draw
+            Names&quot; to randomly assign a secret santa to each person.
           </p>
           <div className="drop-shadow-lg">
             <div
@@ -80,7 +82,10 @@ export default function Start() {
             </div>
           </div>
 
-          <Button className="w-full md:w-auto" onClick={() => setIsDialogOpen(true)}>
+          <Button
+            className="w-full md:w-auto"
+            onClick={() => setIsDialogOpen(true)}
+          >
             Draw Names
           </Button>
           <div>
@@ -111,13 +116,35 @@ export default function Start() {
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-gray-900">Draw Names</h2>
           <p className="text-gray-600">
-            Ready to assign Secret Santas? This will randomly pair each participant
-            with someone to give a gift to.
+            Ready to assign Secret Santas? This will randomly pair each
+            participant with someone to give a gift to.
           </p>
           <div className="flex justify-end space-x-3">
-            <SmallButton onClick={() => setIsDialogOpen(false)}>Cancel</SmallButton>
-            <SmallButton>Draw Names</SmallButton>
+            <SmallButton onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </SmallButton>
+            <SmallButton
+              onClick={() => sendNames(participants)}
+              disabled={isSending}
+            >
+              Draw Names
+            </SmallButton>
           </div>
+          {isSending && (
+            <p className="text-gray-600 mt-4">
+              Sending emails... {progress}/{participants.length}
+            </p>
+          )}
+          {error && (
+            <p className="text-red-600 mt-4">
+              There was an error sending the emails. Please try again.
+            </p>
+          )}
+          {isSuccess && (
+            <p className="text-green-600 mt-4">
+              Success! All emails have been sent.
+            </p>
+          )}
         </div>
       </Dialog>
     </div>

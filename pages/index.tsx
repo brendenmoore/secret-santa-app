@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import Button from "@/components/Button";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Snowfall from "react-snowfall";
