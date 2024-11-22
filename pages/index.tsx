@@ -8,8 +8,7 @@ const snowPath =
 
 export default function Home() {
   return (
-    <div className="h-full flex flex-col justify-center bg-green-900">
-    <div className="relative flex lg:block justify-center background min-h-screen lg:min-h-[780px] lg:h-screen lg:max-h-[1098px]">
+    <div className="relative flex lg:block justify-center background min-h-screen md:min-h-[1175px] md:h-screen md:max-h-[1300px] lg:min-h-[780px] lg:h-screen lg:max-h-[1098px]">
       <Head>
         <title>Secret Santa</title>
       </Head>
@@ -63,7 +62,6 @@ export default function Home() {
       </filter>
       <rect width="100%" height="100%" filter="url(#noise-filter)"></rect>
     </svg> */}
-    </div>
     </div>
   );
 }
