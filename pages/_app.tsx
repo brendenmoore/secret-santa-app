@@ -15,6 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={`${splineSansMono.variable} sans-serif`}>
       <Component {...pageProps} />
+      <style jsx global>{`
+        :root {
+          --font-spline-sans-mono: ${splineSansMono.style.fontFamily};
+        }
+      `}</style>
     </main>
   );
 }

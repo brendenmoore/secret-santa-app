@@ -48,7 +48,7 @@ export default function Dialog({ isOpen, onClose, children }: DialogProps) {
         >
           <CloseIcon />
         </button>
-        <div className="p-6">{children}</div>
+        <div className="p-6 font-mono">{children}</div>
       </div>
     </div>
   );
