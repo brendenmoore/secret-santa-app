@@ -95,9 +95,15 @@ export default function Start() {
             </Button>
           )}
         </div>
-        <div className="flex-1 ">
+        <div className="mt-10 lg:mt-0 mx-auto lg:flex-1 bg-white/10 backdrop-blur-sm rounded-lg p-3 max-w-max lg:max-w-full">
+          {participants.length === 0 && (
+            <div className="w-full h-full flex items-center justify-center">
+              <p>Add some participants to get started.</p>
+            </div>
+          )}
           {participants.length > 0 && (
-            <div className="mt-10 space-y-4">
+            <div className="space-y-4">
+              <p className="text-sm">{participants.length} participants added</p>
               <div className="space-y-2">
                 {participants.map((participant) => (
                   <ParticipantListItem
@@ -142,7 +148,7 @@ export default function Start() {
               {isSending ? "Sending" : "Send"}
             </Button>
             {!isSending && (
-              <button onClick={() => setIsDialogOpen(false)}>
+              <button className="hover:underline" onClick={() => setIsDialogOpen(false)}>
                 Back to Form
               </button>
             )}
