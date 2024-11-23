@@ -18,12 +18,12 @@ export default function Start() {
         <title>Secret Santa - Draw Names</title>
       </Head>
 
-      <div className="relative p-10 font-mono text-white">
-        <div className="space-y-6">
+      <div className="relative max-w-7xl mx-auto p-10 font-mono text-white lg:grid grid-cols-2 gap-10">
+        <div className="space-y-6 mx-auto max-w-lg">
           <p className="font-bold text-4xl xs:text-5xl sm:text-6xl uppercase">
             Participants
           </p>
-          <p className="font-mono font-normal sm:text-lg md:text-justify">
+          <p className="font-mono font-normal sm:text-lg md:text-justify max-w-lg">
             Add the names and emails for each member of your group. Don&apos;t
             forget to add yourself! When you&apos;re done, click &quot;Draw
             Names&quot; to randomly assign a secret santa to each person.
@@ -91,22 +91,21 @@ export default function Start() {
               Draw Names
             </Button>
           )}
-
-          <div>
-            {participants.length > 0 && (
-              <div className="mt-10 space-y-4">
-                <div className="space-y-2">
-                  {participants.map((participant) => (
-                    <ParticipantListItem
-                      participant={participant}
-                      removeParticipant={removeParticipant}
-                      key={participant.id}
-                    />
-                  ))}
-                </div>
+        </div>
+        <div className="flex-1 ">
+          {participants.length > 0 && (
+            <div className="mt-10 space-y-4">
+              <div className="space-y-2">
+                {participants.map((participant) => (
+                  <ParticipantListItem
+                    participant={participant}
+                    removeParticipant={removeParticipant}
+                    key={participant.id}
+                  />
+                ))}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
 
