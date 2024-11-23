@@ -1,5 +1,4 @@
 import { Dialog as HeadlessDialog, DialogPanel } from "@headlessui/react";
-import { Fragment } from "react";
 import CloseIcon from "./icons/CloseIcon";
 
 interface DialogProps {
