@@ -6,12 +6,14 @@ import Dialog from "@/components/Dialog";
 import { useState } from "react";
 import { useSendNames } from "@/utils/useSendNames";
 import { ParticipantListItem } from "@/components/ParticipantListItem";
+import { useRouter } from "next/router";
 
 export default function Start() {
   const { participants, addParticipant, removeParticipant } = useParticipants();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { sendNames, isSending, progress, error, isSuccess } = useSendNames();
-  console.log(participants);
+  const router = useRouter();
+
   return (
     <div className=" min-h-screen background">
       <Head>
@@ -109,23 +111,32 @@ export default function Start() {
         </div>
       </div>
 
-      <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+      <Dialog
+        isOpen={isDialogOpen && !isSuccess}
+        onClose={() => setIsDialogOpen(false)}
+      >
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900">Draw Names</h2>
+          <h2 className="text-2xl font-bold text-red-600">
+            {isSending ? "Sending" : "Get Ready!"}
+          </h2>
           <p className="text-gray-600">
-            Ready to assign Secret Santas? This will randomly pair each
-            participant with someone to give a gift to.
+            You are about to send {participants.length} emails. Each participant
+            will recieve and email with their assigned person. Did you remember
+            to add yourself? Once you send, you will not be able to edit the
+            list again.
           </p>
-          <div className="flex justify-end space-x-3">
-            <SmallButton onClick={() => setIsDialogOpen(false)}>
-              Cancel
-            </SmallButton>
-            <SmallButton
+          <div className="flex flex-col items-center justify-end gap-3">
+            <Button
               onClick={() => sendNames(participants)}
               disabled={isSending}
             >
-              Draw Names
-            </SmallButton>
+              {isSending ? "Sending" : "Send"}
+            </Button>
+            {!isSending && (
+              <button onClick={() => setIsDialogOpen(false)}>
+                Back to Form
+              </button>
+            )}
           </div>
           {isSending && (
             <p className="text-gray-600 mt-4">
@@ -137,11 +148,20 @@ export default function Start() {
               There was an error sending the emails. Please try again.
             </p>
           )}
-          {isSuccess && (
-            <p className="text-green-600 mt-4">
-              Success! All emails have been sent.
-            </p>
-          )}
+        </div>
+      </Dialog>
+
+      <Dialog
+        isOpen={isSuccess && isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+      >
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-green-600">Success!</h2>
+          <p className="text-gray-600">
+            All emails have been sent successfully!
+          </p>
+
+          <Button onClick={() => router.push("/")}>Start Over</Button>
         </div>
       </Dialog>
     </div>
