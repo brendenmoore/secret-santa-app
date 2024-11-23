@@ -41,7 +41,7 @@ export default function Home() {
             Add Names
           </Button>
         </div>
-        <div className="w-[200px] sm:w-[250px] md:w-[300px] lg:w-[350px] xl:w-[400px] 2xl:w-[450px] relative place-self-center mt-16 mb-14 lg:mb-0 md:mt-0 md:place-self-end">
+        <div className="w-[200px] sm:w-[250px] md:w-[300px] lg:w-[350px] 2xl:w-[400px] relative place-self-center mt-16 mb-14 lg:mb-0 md:mt-0 md:place-self-end">
           <span className="absolute bottom-[-18px] rounded-[50%] opacity-50 left-0 right-0 h-16 blur-xl bg-black"></span>
           <img
             className="max-w-full h-auto"
