@@ -26,12 +26,12 @@ export default function Start() {
           <p className="font-bold text-4xl xs:text-5xl sm:text-6xl uppercase">
             Participants
           </p>
-          <p className="font-mono font-normal sm:text-lg md:text-justify max-w-lg">
+          <p className="font-sans font-normal sm:text-lg max-w-lg">
             Add the names and emails for each member of your group. Don&apos;t
             forget to add yourself! When you&apos;re done, click &quot;Draw
             Names&quot; to randomly assign a secret santa to each person.
           </p>
-          <div className="drop-shadow-lg">
+          <div className="drop-shadow-lg font-sans">
             <div
               className="bg-white mx-auto relative min-h-[400px]w-full max-w-xs rounded-b-3xl before:absolute before:w-6 before:h-6 before:rounded-full before:bg-green-600/60 before:top-4 before:left-1/2 before:-translate-x-1/2 before:shadow-inner before:shadow-green-700/60 flex items-center"
               style={{
@@ -51,8 +51,8 @@ export default function Start() {
                   e.currentTarget.reset();
                 }}
               >
-                <div className="space-y-2">
-                  <label htmlFor="participantName" className="block font-mono ">
+                <div className="space-y-2 mt-6">
+                  <label htmlFor="participantName" className="block">
                     Name
                   </label>
                   <input
@@ -66,7 +66,7 @@ export default function Start() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block font-mono ">
+                  <label htmlFor="email" className="block">
                     Email
                   </label>
                   <input
@@ -79,7 +79,7 @@ export default function Start() {
                   />
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-center font-mono">
                   <SmallButton type="submit">Add</SmallButton>
                 </div>
               </form>
@@ -135,7 +135,7 @@ export default function Start() {
           <h2 className="text-2xl font-bold text-red-500 uppercase">
             {isSending ? "Sending" : "Get Ready!"}
           </h2>
-          <p className="text-gray-600 max-w-sm">
+          <p className="text-gray-600 max-w-sm font-sans">
             You are about to send {participants.length} emails. Each participant
             will recieve and email with their assigned person. Did you remember
             to add yourself? Once you send, you will not be able to edit the
@@ -187,7 +187,7 @@ export default function Start() {
             <h2 className="text-2xl font-bold text-green-600 uppercase">
               Success!
             </h2>
-            <p className="text-gray-600 mb-18">
+            <p className="text-gray-600 mb-18 font-sans">
               {progress}/{participants.length} emails sent.
             </p>
           </div>

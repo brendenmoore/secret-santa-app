@@ -28,7 +28,7 @@ export default function Home() {
             <br />
             is Coming
           </p>
-          <p className="font-mono font-normal text-lg sm:text-xl md:text-2xl 2xl:text-3xl md:text-justify">
+          <p className="font-sans font-normal text-lg sm:text-xl md:text-2xl 2xl:text-3xl md:text-justify">
             It&apos;s time for a secret santa gift exchange! This site will
             handle the details, so you can focus on finding the perfect gift.
           </p>

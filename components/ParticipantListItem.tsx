@@ -18,7 +18,7 @@ export function ParticipantListItem({
   const imageNumber = (participant.id % 15) + 1;
 
   return (
-    <div className="flex max-w-md mx-auto items-center gap-4 bg-white/10 backdrop-blur-sm rounded-lg p-3">
+    <div className="font-sans flex max-w-md mx-auto items-center gap-4 bg-white/10 backdrop-blur-sm rounded-lg p-3">
       <div className="shrink-0">
         <Image
           src={`/christmas-icons/${imageNumber}.png`}
