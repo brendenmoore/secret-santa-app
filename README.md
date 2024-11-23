@@ -1,6 +1,6 @@
 # Secret Santa App 🎅
 
-![screenshot](https://santa.bmoore.dev/screenshot.png)
+![screenshot](public/screenshot.png)
 
 A simple tool for organizing Secret Santa gift exchanges with friends, family, or colleagues. Built with Next.js, React, and Tailwind CSS, featuring a beautiful snow animation effect and a clean, responsive design.
 
