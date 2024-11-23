@@ -8,13 +8,13 @@ interface ButtonProps {
   className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   children,
   onClick,
   type = "button",
   disabled = false,
   className,
-}) => {
+}: ButtonProps) => {
   return (
     <button
       type={type}

@@ -8,13 +8,13 @@ interface SmallButtonProps {
   className?: string;
 }
 
-const SmallButton: React.FC<SmallButtonProps> = ({
+const SmallButton = ({
   children,
   onClick,
   type = "button",
   disabled = false,
   className,
-}) => {
+}: SmallButtonProps) => {
   return (
     <button
       type={type}
