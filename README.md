@@ -1,6 +1,6 @@
 # Secret Santa App 🎅
 
-![screenshot](public/screenshot.png)
+![screenshot](/public/screenshot.png?raw=true "Secret Santa App Screenshot")
 
 A simple tool for organizing Secret Santa gift exchanges with friends, family, or colleagues. Built with Next.js, React, and Tailwind CSS, featuring a beautiful snow animation effect and a clean, responsive design.
 
