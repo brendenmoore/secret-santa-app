@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import Head from "next/head";
 import SmallButton from "@/components/SmallButton";
 import { useParticipants } from "@/utils/useParticipants";
+import { DEMO_EMAIL } from "@/utils/constants";
 import Dialog from "@/components/Dialog";
 import { useState } from "react";
 import { useSendNames } from "@/utils/useSendNames";
@@ -14,6 +15,10 @@ export default function Start() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { sendNames, isSending, progress, error, isSuccess } = useSendNames();
   const router = useRouter();
+  const [isDemoMode, setIsDemoMode] = useState(false);
+  const demoParticipants = participants.filter(
+    (participant) => participant.email === DEMO_EMAIL
+  );
 
   return (
     <div className=" min-h-screen background">
@@ -27,9 +32,7 @@ export default function Start() {
             Participants
           </p>
           <p className="font-sans font-normal sm:text-lg max-w-lg">
-            Add the names and emails for each member of your group. Don&apos;t
-            forget to add yourself! When you&apos;re done, click &quot;Draw
-            Names&quot; to randomly assign a secret santa to each person.
+            Add the names and emails for each member of your group.
           </p>
           <div className="drop-shadow-lg font-sans">
             <div
@@ -46,9 +49,15 @@ export default function Start() {
                   addParticipant({
                     name: (e.currentTarget.participantName as HTMLInputElement)
                       .value,
-                    email: (e.currentTarget.email as HTMLInputElement).value,
+                    email: isDemoMode
+                      ? DEMO_EMAIL
+                      : (e.currentTarget.email as HTMLInputElement).value,
                   });
-                  e.currentTarget.reset();
+                  (e.currentTarget.participantName as HTMLInputElement).value =
+                    "";
+                  if (!isDemoMode) {
+                    (e.currentTarget.email as HTMLInputElement).value = "";
+                  }
                 }}
               >
                 <div className="space-y-2 mt-6">
@@ -74,9 +83,28 @@ export default function Start() {
                     id="email"
                     name="email"
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    disabled={isDemoMode}
+                    defaultValue={isDemoMode ? DEMO_EMAIL : ""}
+                    value={isDemoMode ? DEMO_EMAIL : undefined}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
                     placeholder="Enter participant's email"
                   />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={isDemoMode}
+                      onChange={(e) => setIsDemoMode(e.target.checked)}
+                      className="w-4 h-4 text-green-600 rounded focus:ring-green-500"
+                    />
+                    <span>Demo Mode</span>
+                  </label>
+                  <p className="text-xs text-gray-500">
+                    When enabled, no emails will be sent and a fake email will
+                    be used for all participants.
+                  </p>
                 </div>
 
                 <div className="flex justify-center font-mono">
@@ -141,6 +169,14 @@ export default function Start() {
             to add yourself? Once you send, you will not be able to edit the
             list again.
           </p>
+          {demoParticipants.length > 0 && (
+            <p className="text-gray-600 max-w-sm font-sans font-bold">
+              {demoParticipants.length} participant(s) are in demo mode.{" "}
+              <br />
+              {participants.length - demoParticipants.length} email(s) will
+              actually be sent.
+            </p>
+          )}
           <div className="flex flex-col items-center justify-end gap-3">
             <Button
               className="mt-16"
