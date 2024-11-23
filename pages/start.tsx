@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useSendNames } from "@/utils/useSendNames";
 import { ParticipantListItem } from "@/components/ParticipantListItem";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function Start() {
   const { participants, addParticipant, removeParticipant } = useParticipants();
@@ -116,10 +117,17 @@ export default function Start() {
         onClose={() => setIsDialogOpen(false)}
       >
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-red-600">
+          <Image
+            className="mx-auto"
+            src="/christmas-icons/1.png"
+            width={50}
+            height={50}
+            alt="present"
+          />
+          <h2 className="text-2xl font-bold text-red-500 uppercase">
             {isSending ? "Sending" : "Get Ready!"}
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 max-w-sm">
             You are about to send {participants.length} emails. Each participant
             will recieve and email with their assigned person. Did you remember
             to add yourself? Once you send, you will not be able to edit the
@@ -127,6 +135,7 @@ export default function Start() {
           </p>
           <div className="flex flex-col items-center justify-end gap-3">
             <Button
+              className="mt-16"
               onClick={() => sendNames(participants)}
               disabled={isSending}
             >
@@ -155,13 +164,29 @@ export default function Start() {
         isOpen={isSuccess && isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
       >
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-green-600">Success!</h2>
-          <p className="text-gray-600">
-            All emails have been sent successfully!
-          </p>
+        <div>
+          <div className="space-y-4">
+            <Image
+              className="mx-auto"
+              src="/christmas-icons/1.png"
+              width={50}
+              height={50}
+              alt="present"
+            />
+            <h2 className="text-2xl font-bold text-green-600 uppercase">
+              Success!
+            </h2>
+            <p className="text-gray-600 mb-18">
+              {progress}/{participants.length} emails sent.
+            </p>
+          </div>
 
-          <Button onClick={() => router.push("/")}>Start Over</Button>
+          <Button
+            className="mt-16 mx-auto block"
+            onClick={() => router.push("/")}
+          >
+            Start Over
+          </Button>
         </div>
       </Dialog>
     </div>

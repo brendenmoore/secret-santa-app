@@ -37,7 +37,7 @@ export default function Dialog({ isOpen, onClose, children }: DialogProps) {
     >
       <div
         ref={dialogRef}
-        className="relative w-full max-w-lg bg-white rounded-lg shadow-xl"
+        className="relative w-max max-w-lg bg-white rounded-lg shadow-xl"
         role="dialog"
         aria-modal="true"
       >
