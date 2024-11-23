@@ -8,9 +8,9 @@ export const EmailTemplate = ({
   assignee
 }: Readonly<EmailTemplateProps>) => (
   <div>
-    <h1>Hi, {name}!</h1>
+    <p>Hi, {name}!</p>
     <p>
-      Your secret santa is <strong>{assignee}</strong>
+      Your secret santa is assignment is <strong>{assignee}</strong>.
     </p>
   </div>
 );

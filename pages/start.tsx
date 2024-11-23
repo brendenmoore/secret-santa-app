@@ -21,7 +21,7 @@ export default function Start() {
   );
 
   return (
-    <div className=" min-h-screen background">
+    <div className="custom-background min-h-screen">
       <Head>
         <title>Secret Santa - Draw Names</title>
       </Head>
