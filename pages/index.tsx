@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Snowfall, { SnowfallProps } from "react-snowfall";
 
 const SNOW_PATH = "/snow.png";
-const SANTA_PATH = "/santa (2).png";
+const SANTA_PATH = "/santa.png";
 const SNOWFALL_CONFIG: SnowfallProps = {
   speed: [0.5, 1] as [number, number],
   wind: [-0.5, 1] as [number, number],
