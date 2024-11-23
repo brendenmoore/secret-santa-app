@@ -137,7 +137,7 @@ export default function Start() {
           </h2>
           <p className="text-gray-600 max-w-sm font-sans">
             You are about to send {participants.length} emails. Each participant
-            will recieve and email with their assigned person. Did you remember
+            will recieve an email with their assigned person. Did you remember
             to add yourself? Once you send, you will not be able to edit the
             list again.
           </p>
