@@ -11,6 +11,7 @@ I created a script to automate this process for my friend group a few years ago.
 - **Simple UI**: Just enter names and emails, and press "Send".
 - **Email Integration**: Automated notifications using Resend to send the emails to each participant.
 - **Mobile Friendly**: Works seamlessly across all screen sizes.
+- **Demo Mode**: Try out the app with a fake email to test out the flow.
 
 ## Tech Stack 🛠️
 
