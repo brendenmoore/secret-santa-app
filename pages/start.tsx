@@ -96,18 +96,24 @@ export default function Start() {
 
                 <div className="space-y-2">
                   <label htmlFor="email" className="block">
-                    Email
+                    Email(s)
                   </label>
                   <input
-                    type="email"
+                    type="text"
                     id="email"
                     name="email"
                     required
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
                     disabled={isDemoMode}
                     value={isDemoMode ? DEMO_EMAIL : undefined}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
-                    placeholder="Enter participant's email"
+                    placeholder="Enter one or more emails, separated by commas"
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    You can enter multiple emails, separated by commas.
+                  </p>
                 </div>
 
                 <div className="space-y-2">
