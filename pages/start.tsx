@@ -182,13 +182,26 @@ export default function Start() {
         {/* Right Column - Participant List */}
         <div className="mt-10 lg:mt-0 mx-auto lg:flex-1 bg-white/10 backdrop-blur-sm rounded-lg p-3 w-full max-w-max lg:max-w-full">
           <div className="space-y-4">
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm">
                 {participants.length} participants added
               </p>
-              <div className="flex items-center gap-2">
-                <SmallButton type="button" onClick={handleExportCsv} disabled={participants.length === 0}>Export CSV</SmallButton>
-                <SmallButton type="button" onClick={handleImportClick}>Import CSV</SmallButton>
+              <div className="flex w-full sm:w-auto flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <SmallButton
+                  type="button"
+                  onClick={handleExportCsv}
+                  disabled={participants.length === 0}
+                  className="w-full sm:w-auto text-sm px-4 py-2"
+                >
+                  Export CSV
+                </SmallButton>
+                <SmallButton
+                  type="button"
+                  onClick={handleImportClick}
+                  className="w-full sm:w-auto text-sm px-4 py-2"
+                >
+                  Import CSV
+                </SmallButton>
               </div>
             </div>
             {participants.length === 0 ? (
