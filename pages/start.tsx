@@ -8,7 +8,7 @@ import { DEMO_EMAIL } from "@/utils/constants";
 import { useParticipants } from "@/utils/useParticipants";
 import { useSendNames } from "@/utils/useSendNames";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const PRESENT_ICON = {
   src: "/christmas-icons/1.png",
@@ -32,8 +32,9 @@ export default function Start() {
   const router = useRouter();
   const [isDemoMode, setIsDemoMode] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const { participants, addParticipant, removeParticipant } = useParticipants();
+  const { participants, addParticipant, removeParticipant, exportToCsv, importFromCsv } = useParticipants();
   const { sendNames, isSending, progress, error, isSuccess } = useSendNames();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   
   const demoParticipants = participants.filter(
     (participant) => participant.email === DEMO_EMAIL
@@ -51,6 +52,35 @@ export default function Start() {
     form.elements.participantName.value = "";
     if (!isDemoMode) {
       form.elements.email.value = "";
+    }
+  };
+
+  const handleExportCsv = () => {
+    exportToCsv();
+  };
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleImportChange: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const { added } = importFromCsv(text);
+      // Simple feedback; can be replaced with a nicer toast later
+      if (added > 0) {
+        alert(`Imported ${added} participant(s) from CSV.`);
+      } else {
+        alert("No valid rows found to import.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to import CSV. Please check the file format.");
+    } finally {
+      // Reset the input so the same file can be selected again if needed
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
 
@@ -151,15 +181,21 @@ export default function Start() {
 
         {/* Right Column - Participant List */}
         <div className="mt-10 lg:mt-0 mx-auto lg:flex-1 bg-white/10 backdrop-blur-sm rounded-lg p-3 w-full max-w-max lg:max-w-full">
-          {participants.length === 0 ? (
-            <div className="w-full h-full flex items-center justify-center">
-              <p>Add some participants to get started.</p>
-            </div>
-          ) : (
-            <div className="space-y-4">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between gap-3">
               <p className="text-sm">
                 {participants.length} participants added
               </p>
+              <div className="flex items-center gap-2">
+                <SmallButton type="button" onClick={handleExportCsv} disabled={participants.length === 0}>Export CSV</SmallButton>
+                <SmallButton type="button" onClick={handleImportClick}>Import CSV</SmallButton>
+              </div>
+            </div>
+            {participants.length === 0 ? (
+              <div className="w-full h-full flex items-center justify-center">
+                <p>Add some participants to get started.</p>
+              </div>
+            ) : (
               <div className="space-y-2">
                 {participants.map((participant) => (
                   <ParticipantListItem
@@ -169,8 +205,16 @@ export default function Start() {
                   />
                 ))}
               </div>
-            </div>
-          )}
+            )}
+          </div>
+          {/* Hidden file input for CSV import */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".csv,text/csv"
+            className="hidden"
+            onChange={handleImportChange}
+          />
         </div>
       </div>
 
